@@ -3,6 +3,7 @@ import Accordion from './component/Accordion';
 import Search from './component/Search';
 import Dropdowm from './component/Dropdown';
 import Translate from './component/Translate';
+import Header from './component/Header';
 const items=[
     {
         title: "What is React?",
@@ -31,11 +32,11 @@ const options=[
         value: "blue"
     }
 ];
-export default ()=>{
- /*   const [selected,setSelected]=useState(options[0]);
+const Dropdown=()=>{
+    const [selected,setSelected]=useState(options[0]);
     const [visible,setVisible]=useState(true);
     return( 
-    <div className="ui container">
+    <div>
         <button onClick={()=>{setVisible(!visible)}} 
             className="ui button">Toggle Dropdown</button>
         {visible ? 
@@ -46,10 +47,26 @@ export default ()=>{
         }
         <h2><font color={selected.value}>This is current Color</font></h2>
     </div>);
-    */
-    return(<div>
-        <Translate
-        />
+}
+const Navigate=()=>{
+    const path=window.location.pathname
+    if(path==='/'){
+        return <Accordion items={items}/>
+    }
+    else if(path==='/translate'){
+        return <Translate/>
+    }
+    else if(path==='/dropdown'){
+        return Dropdown();
+    }
+    else if(path==='/search'){
+        return <Search/>        
+    }
+}
+export default ()=>{
+    return(<div className="ui container">
+        <Header/>
+       {Navigate()}
     </div>);
 
 }
