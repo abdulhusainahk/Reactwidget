@@ -2,6 +2,7 @@ import React,{useState} from "react";
 import Accordion from './component/Accordion';
 import Search from './component/Search';
 import Dropdowm from './component/Dropdown';
+import Translate from './component/Translate';
 const items=[
     {
         title: "What is React?",
@@ -31,7 +32,7 @@ const options=[
     }
 ];
 export default ()=>{
-    const [selected,setSelected]=useState(options[0]);
+ /*   const [selected,setSelected]=useState(options[0]);
     const [visible,setVisible]=useState(true);
     return( 
     <div className="ui container">
@@ -40,8 +41,15 @@ export default ()=>{
         {visible ? 
         <Dropdowm options={options}
             selected={selected}
-            onSelectChange={setSelected}/> : null
+            onSelectChange={setSelected}
+            Title={"Select a Color"}/> : null
         }
         <h2><font color={selected.value}>This is current Color</font></h2>
     </div>);
+    */
+    return(<div>
+        <Translate
+        />
+    </div>);
+
 }
