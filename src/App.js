@@ -1,9 +1,10 @@
 import React,{useState} from "react";
 import Accordion from './component/Accordion';
 import Search from './component/Search';
-import Dropdowm from './component/Dropdown';
+import Dropdown from './component/Dropdown';
 import Translate from './component/Translate';
 import Header from './component/Header';
+import Route from './component/Route';
 const items=[
     {
         title: "What is React?",
@@ -32,15 +33,15 @@ const options=[
         value: "blue"
     }
 ];
-const Dropdown=()=>{
+const Drop=()=>{
     const [selected,setSelected]=useState(options[0]);
     const [visible,setVisible]=useState(true);
     return( 
     <div>
         <button onClick={()=>{setVisible(!visible)}} 
-            className="ui button">Toggle Dropdown</button>
+        className="ui button">Toggle Dropdown</button>
         {visible ? 
-        <Dropdowm options={options}
+        <Dropdown options={options}
             selected={selected}
             onSelectChange={setSelected}
             Title={"Select a Color"}/> : null
@@ -48,25 +49,14 @@ const Dropdown=()=>{
         <h2><font color={selected.value}>This is current Color</font></h2>
     </div>);
 }
-const Navigate=()=>{
-    const path=window.location.pathname
-    if(path==='/'){
-        return <Accordion items={items}/>
-    }
-    else if(path==='/translate'){
-        return <Translate/>
-    }
-    else if(path==='/dropdown'){
-        return Dropdown();
-    }
-    else if(path==='/search'){
-        return <Search/>        
-    }
-}
+
 export default ()=>{
     return(<div className="ui container">
         <Header/>
-       {Navigate()}
+        <Route path='/'><Accordion items={items}/></Route>
+        <Route path='/translate'><Translate/></Route>
+        <Route path='/dropdown'>{Drop()}</Route>
+        <Route path='/search'><Search/></Route>
     </div>);
 
 }
